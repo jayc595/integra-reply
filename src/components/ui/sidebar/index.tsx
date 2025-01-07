@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Sidebar, SidebarBody, SidebarLink } from "./sidebar";
 import { Blocks, House, LogOut, Settings, Workflow } from "lucide-react";
 import { usePagePath } from "@/hooks/use-navigation";
+import UpgradeCard from "./upgrade-card";
 
 export function SidebarLayout() {
   const { page } = usePagePath();
@@ -60,21 +61,7 @@ export function SidebarLayout() {
             </div>
           </div>
           <div>
-            <SidebarLink
-              link={{
-                label: "User Name",
-                href: "#",
-                icon: (
-                  <Image
-                    src="/avatar.png"
-                    className="h-7 w-7 flex-shrink-0 rounded-full"
-                    width={50}
-                    height={50}
-                    alt="Avatar"
-                  />
-                ),
-              }}
-            />
+            <UpgradeCard open={open}/>
           </div>
         </SidebarBody>
       </Sidebar> 
