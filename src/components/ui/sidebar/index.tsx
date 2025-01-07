@@ -17,7 +17,6 @@ export function SidebarLayout() {
       icon: (
         <House className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
-      isActive: page === '1234'
     },
     {
       label: "Automations",
@@ -25,7 +24,6 @@ export function SidebarLayout() {
       icon: (
         <Workflow className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
-      isActive: page === 'automations'
     },
     {
         label: "Integrations",
@@ -33,7 +31,6 @@ export function SidebarLayout() {
         icon: (
           <Blocks className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),
-        isActive: page === 'integrations'
       },
     {
       label: "Settings",
@@ -41,7 +38,6 @@ export function SidebarLayout() {
       icon: (
         <Settings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
-      isActive: page === 'settings'
     },
     {
       label: "Logout",
@@ -49,7 +45,6 @@ export function SidebarLayout() {
       icon: (
         <LogOut className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
-      isActive: false
     },
   ];
   const [open, setOpen] = useState(false);
@@ -60,7 +55,7 @@ export function SidebarLayout() {
             {open ? <Logo /> : <LogoIcon />}
             <div className="mt-8 flex flex-col gap-2 ">
               {links.map((link, idx) => (
-                <SidebarLink key={idx} link={link} isActive={link.isActive} />
+                <SidebarLink key={idx} link={link} isActive={link.label.toLowerCase() === page} />
               ))}
             </div>
           </div>
