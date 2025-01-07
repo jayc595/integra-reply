@@ -5,8 +5,11 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Sidebar, SidebarBody, SidebarLink } from "./sidebar";
 import { Blocks, House, LogOut, Settings, Workflow } from "lucide-react";
+import { usePagePath } from "@/hooks/use-navigation";
 
 export function SidebarLayout() {
+  const { page } = usePagePath();
+
   const links = [
     {
       label: "Dashboard",
@@ -14,7 +17,7 @@ export function SidebarLayout() {
       icon: (
         <House className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
-      isActive: true
+      isActive: page === '1234'
     },
     {
       label: "Automations",
@@ -22,7 +25,7 @@ export function SidebarLayout() {
       icon: (
         <Workflow className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
-      isActive: false
+      isActive: page === 'automations'
     },
     {
         label: "Integrations",
@@ -30,7 +33,7 @@ export function SidebarLayout() {
         icon: (
           <Blocks className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),
-        isActive: false
+        isActive: page === 'integrations'
       },
     {
       label: "Settings",
@@ -38,7 +41,7 @@ export function SidebarLayout() {
       icon: (
         <Settings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
-      isActive: false
+      isActive: page === 'settings'
     },
     {
       label: "Logout",
