@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 import { Sidebar, SidebarBody, SidebarLink } from "./sidebar";
 import { Blocks, House, LogOut, Settings, Workflow } from "lucide-react";
 
@@ -15,6 +14,7 @@ export function SidebarLayout() {
       icon: (
         <House className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
+      isActive: true
     },
     {
       label: "Automations",
@@ -22,6 +22,7 @@ export function SidebarLayout() {
       icon: (
         <Workflow className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
+      isActive: false
     },
     {
         label: "Integrations",
@@ -29,6 +30,7 @@ export function SidebarLayout() {
         icon: (
           <Blocks className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
         ),
+        isActive: false
       },
     {
       label: "Settings",
@@ -36,6 +38,7 @@ export function SidebarLayout() {
       icon: (
         <Settings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
+      isActive: false
     },
     {
       label: "Logout",
@@ -43,6 +46,7 @@ export function SidebarLayout() {
       icon: (
         <LogOut className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
+      isActive: false
     },
   ];
   const [open, setOpen] = useState(false);
@@ -51,9 +55,9 @@ export function SidebarLayout() {
         <SidebarBody className="justify-between gap-10">
           <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
             {open ? <Logo /> : <LogoIcon />}
-            <div className="mt-8 flex flex-col gap-2">
+            <div className="mt-8 flex flex-col gap-2 ">
               {links.map((link, idx) => (
-                <SidebarLink key={idx} link={link} />
+                <SidebarLink key={idx} link={link} isActive={link.isActive} />
               ))}
             </div>
           </div>
