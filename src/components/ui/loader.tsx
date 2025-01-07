@@ -6,17 +6,17 @@ type Props = {
     loading:boolean
     className?:string
     children: React.ReactNode
-    colour?: string
+    color?: string
 }
 
 const Loader = ({
     loading,
     className,
     children,
-    colour
+    color
 }: Props) => {
   return loading ? <div className={cn(className)}>
-    <BlocksShuffleTwo color={colour}/>
+    <BlocksShuffleTwo color={color}/>
   </div> : (
     children
   )
