@@ -9,47 +9,11 @@ import { usePagePath } from "@/hooks/use-navigation";
 import UpgradeCard from "./upgrade-card";
 import { Separator } from "../separator";
 import ClerkUserProfile from "./clerk-profile";
+import { MENU } from "@/constants/menu";
 
 export function SidebarLayout() {
   const { page } = usePagePath();
 
-  const links = [
-    {
-      label: "Dashboard",
-      href: "/dashboard/1234",
-      icon: (
-        <House className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
-    },
-    {
-      label: "Automations",
-      href: "/dashboard/1234/automations",
-      icon: (
-        <Workflow className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
-    },
-    {
-        label: "Integrations",
-        href: "/dashboard/1234/integrations",
-        icon: (
-          <Blocks className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-        ),
-      },
-    {
-      label: "Settings",
-      href: "/dashboard/1234/settings",
-      icon: (
-        <Settings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
-    },
-    {
-      label: "Logout",
-      href: "#",
-      icon: (
-        <LogOut className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-      ),
-    },
-  ];
   const [open, setOpen] = useState(false);
   return (
       <Sidebar open={open} setOpen={setOpen}>
@@ -57,7 +21,7 @@ export function SidebarLayout() {
           <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
             {open ? <Logo /> : <LogoIcon />}
             <div className="mt-8 flex flex-col gap-2 ">
-              {links.map((link, idx) => (
+              {MENU.map((link, idx) => (
                 <SidebarLink key={idx} link={link} isActive={link.label.toLowerCase() === page} />
               ))}
               <div className="pt-5">

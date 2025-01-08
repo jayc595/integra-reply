@@ -1,6 +1,10 @@
+"use client"
+
 import CreateAutomationButton from '@/components/ui/create-automation-btn'
 import Search from '@/components/ui/search'
 import { SidebarLayout } from '@/components/ui/sidebar'
+import { MENU } from '@/constants/menu'
+import { usePagePath } from '@/hooks/use-navigation'
 import { Divide } from 'lucide-react'
 import React from 'react'
 
@@ -13,7 +17,14 @@ const Layout = ({
     children,
     params
 }: Props) => {
+    const { page } = usePagePath();
+    const pageTitle = page.charAt(0).toUpperCase() + page.slice(1);
 
+    const currentMenuItem = MENU.find(
+        (menuItem) => menuItem.label.toLowerCase() === page.toLowerCase()
+      );
+
+      const description = currentMenuItem?.description || false;
 
   return (
     <div
@@ -21,8 +32,6 @@ const Layout = ({
   style={{ height: "calc(100vh - 40px)", width: "calc(100vw - 40px)", margin: "20px" }}
 >
         <SidebarLayout/>
-
-        {/* Temporary. */}
         <div className="flex flex-1">
             <div className="p-2 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col flex-1 w-full h-screen">
                 
@@ -31,6 +40,16 @@ const Layout = ({
                     <Search/>
                     <CreateAutomationButton />
                 </div>
+            </div>
+            <div className="flex flex-col gap-y-2 mb-6 mt-6 ml-6">
+                <h1 className="text-2xl font-semibold tracking-tight">
+                    {pageTitle}
+                </h1>
+                {description && (
+                    <p className="text-sm text-muted-foreground">
+                        {description}
+                    </p>
+                )}
             </div>
             {children}
             </div>
