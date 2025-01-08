@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import React from 'react';
+import { Button } from '../button';
 
 type Props = {
   open: boolean;
@@ -21,7 +22,7 @@ const UpgradeCard = ({ open }: Props) => {
       <span className="text-sm">
         Unlock the Power of {' '}
         <span
-          className="bg-gradient-to-r from-[#4C6E91] to-[#6A98D0] font-bold bg-clip-text text-transparent"
+          className="bg-gradient-to-r from-blue-500 to-purple-600 font-bold bg-clip-text text-transparent"
         >
           Smart AI
         </span>
@@ -29,7 +30,9 @@ const UpgradeCard = ({ open }: Props) => {
       <p className="text-[#9B9CA0] font-light text-sm">
         Access all premium features, <br /> including AI capabilities and much more!
       </p>
-      {/* <PaymentButton /> */}
+      <Button className='bg-gradient-to-br text-white rounded-full from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700'>
+        Upgrade
+      </Button>
     </motion.div>
   );
 };
