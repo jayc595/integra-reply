@@ -5,7 +5,7 @@ import BlocksShuffleTwo from './spinner'
 type Props = {
     loading:boolean
     className?:string
-    children: React.ReactNode
+    children?: React.ReactNode
     color?: string
 }
 

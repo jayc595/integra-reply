@@ -7,6 +7,8 @@ import { Sidebar, SidebarBody, SidebarLink } from "./sidebar";
 import { Blocks, House, LogOut, Settings, Workflow } from "lucide-react";
 import { usePagePath } from "@/hooks/use-navigation";
 import UpgradeCard from "./upgrade-card";
+import { Separator } from "../separator";
+import ClerkUserProfile from "./clerk-profile";
 
 export function SidebarLayout() {
   const { page } = usePagePath();
@@ -58,6 +60,11 @@ export function SidebarLayout() {
               {links.map((link, idx) => (
                 <SidebarLink key={idx} link={link} isActive={link.label.toLowerCase() === page} />
               ))}
+              <div className="pt-5">
+                <Separator orientation="horizontal" className='bg-[#3e3e3f]'/>
+              </div>
+              {/* @TODO: Fix Clerk User Profile not showing. */}
+              {/* <ClerkUserProfile/> */}
             </div>
           </div>
           <div>
