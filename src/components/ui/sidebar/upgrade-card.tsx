@@ -9,6 +9,8 @@ type Props = {
 const UpgradeCard = ({ open }: Props) => {
   if (!open) return null;
 
+  //@TODO: Only show the Card IF User isn't a member.
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
