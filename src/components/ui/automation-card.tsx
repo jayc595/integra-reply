@@ -2,8 +2,8 @@
 
 import React from 'react'
 import { Badge } from "@/components/ui/badge"
-import { Switch } from "@/components/ui/switch"
 import Link from 'next/link'
+import { usePagePath } from '@/hooks/use-navigation'
 
 type AutomationCardProps = {
   title: string
@@ -18,9 +18,11 @@ const AutomationCard: React.FC<AutomationCardProps> = ({
   isActive,
   createdAt
 }) => {
+      const { pathname } = usePagePath();
+
   return (
     <div className='flex flex-col bg-neutral-100 dark:bg-neutral-800 rounded-md border border-neutral-200 dark:border-neutral-700 overflow-hidden w-full min-w-[250px] hover:opacity-80 max-w-2xl mb-2'>
-        <Link href={'/'}>
+        <Link href={`${pathname}/12345`}>
         <div className='p-6'>
             <div className='flex flex-wrap justify-between items-center gap-2 mb-4'>
             <h3 className='text-lg font-semibold text-neutral-800 dark:text-neutral-100 break-words'>{title}</h3>
