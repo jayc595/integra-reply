@@ -1,14 +1,43 @@
+"use client"
+
+import AutomationCard from '@/components/ui/automation-card'
+import NewAutomationCard from '@/components/ui/new-automation-card'
 import React from 'react'
 
 type Props = {}
 
 const Automations = (props: Props) => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <h2>Automations Page</h2>
-      </main>
-    </div>
+      <div className="p-4 bg-neutral-200 dark:bg-neutral-900 min-h-screen">
+        <div className="flex flex-wrap gap-4">
+          <NewAutomationCard/>
+          <AutomationCard
+            title="Email Notification Workflow"
+            keywords={["email", "notification", "customer"]}
+            isActive={true}
+            createdAt={new Date("2025-01-01")}
+          />
+          <AutomationCard
+            title="Email Notification Workflow"
+            keywords={["email", "notification", "customer"]}
+            isActive={true}
+            createdAt={new Date("2025-01-01")}
+          />
+          <AutomationCard
+            title="Email Notification Workflow"
+            keywords={["email", "notification", "customer"]}
+            isActive={true}
+            createdAt={new Date("2025-01-01")}
+          />
+          <AutomationCard
+            title="Email Notification Workflow"
+            keywords={["email", "notification", "customer"]}
+            isActive={true}
+            createdAt={new Date("2025-01-01")}
+          />
+        </div>
+      </div>
+
   )
 }
 
