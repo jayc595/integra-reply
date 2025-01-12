@@ -4,8 +4,6 @@ import Link, { LinkProps } from "next/link";
 import React, { useState, createContext, useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { IconMenu2, IconX } from "@tabler/icons-react";
-import { div } from "framer-motion/client";
-import { userInitialization } from "@/actions/user";
 
 interface Links {
   label: string;
