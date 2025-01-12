@@ -14,6 +14,19 @@ export const onCurrentUser = async () => {
     return user
 }
 
+export const onGetUserInfo = async () => {
+    const currentUser = await onCurrentUser()
+    try{
+        const userProfile = await getUser(currentUser.id)
+        if(userProfile){
+            return { status: 200, data: userProfile }
+        }
+        return { status: 404 }
+    } catch(error){
+        return { status: 500 }
+    }
+}
+
 export const userInitialization = async () => {
     const currentUser = await onCurrentUser();
     try {

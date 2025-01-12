@@ -1,29 +1,19 @@
-"use client";
-
-import CreateAutomationButton from "@/components/ui/create-automation-btn";
-import Search from "@/components/ui/search";
 import { SidebarLayout } from "@/components/ui/sidebar";
-import { MENU } from "@/constants/menu";
-import { usePagePath } from "@/hooks/use-navigation";
 import React from "react";
+import { QueryClient } from '@tanstack/react-query';
+import { PrefetchUser } from "@/lib/prefetch";
+import TopNavigationBar from "@/components/ui/sidebar/top-navigation-bar";
 
 type Props = {
   children: React.ReactNode;
   params: { userId: string };
 };
 
-const Layout = ({ children, params }: Props) => {
-  const { page, pathname } = usePagePath();
-  const pageTitle = page.charAt(0).toUpperCase() + page.slice(1);
+const Layout = async ({ children, params }: Props) => {
+  const query = new QueryClient();
 
-  const currentMenuItem = MENU.find(
-    (menuItem) => menuItem.label.toLowerCase() === page.toLowerCase()
-  );
+  await PrefetchUser(query)
 
-  const description = currentMenuItem?.description;
-
-  //@TODO: Improve the below.
-  const ignoreTopNav = /\/automations\/\d+$/.test(pathname);
 
   return (
     <div
@@ -33,22 +23,7 @@ const Layout = ({ children, params }: Props) => {
       <SidebarLayout />
       <div className="flex flex-1">
         <div className="p-2 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col flex-1 w-full">
-          {!ignoreTopNav && (
-            <>
-              <div className="flex items-center w-full gap-x-3">
-                <Search />
-                <CreateAutomationButton />
-              </div>
-              <div className="flex flex-col gap-y-2 mb-6 mt-6 ml-6">
-                <h1 className="text-2xl font-semibold tracking-tight">
-                  {pageTitle}
-                </h1>
-                {description && (
-                  <p className="text-sm text-muted-foreground">{description}</p>
-                )}
-              </div>
-            </>
-          )}
+          <TopNavigationBar />
           {children}
         </div>
       </div>

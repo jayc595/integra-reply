@@ -6,7 +6,7 @@ export const usePagePath = () => {
   // Find the userSlug (first occurrence of user_{...})
   const userSlug = pathParts.find(part => /^user_\w+$/.test(part)) || null;
 
-  const page = pathParts.length > 0 ? pathParts[pathParts.length - 1] : null;
+  const page = pathParts.length > 0 ? pathParts[pathParts.length - 1] : '';
 
   return { page, pathname, userSlug };
 };
