@@ -91,8 +91,7 @@ export const getUser =  async (clerkId: string) => {
             clerkId
         },
         include: {
-            subscription: true,
-            automations: true
+            subscription: true
         }
     })
 }
