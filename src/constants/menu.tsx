@@ -10,7 +10,7 @@ type MENU_TYPE = {
 export const MENU: MENU_TYPE[] = [
     {
       label: "Dashboard",
-      href: "/dashboard/1234",
+      href: "dashboard",
       icon: (
         <House className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
@@ -18,7 +18,7 @@ export const MENU: MENU_TYPE[] = [
     {
       label: "Automations",
       description: "Automate routine processes to focus on what matters most.",
-      href: "/dashboard/1234/automations",
+      href: "automations",
       icon: (
         <Workflow className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
@@ -26,7 +26,7 @@ export const MENU: MENU_TYPE[] = [
     {
       label: "Integrations",
       description: "Connect your accounts to enable automated responses.",
-      href: "/dashboard/1234/integrations",
+      href: "integrations",
       icon: (
         <Blocks className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
@@ -34,7 +34,7 @@ export const MENU: MENU_TYPE[] = [
     {
       label: "Settings",
       description: "Customize your preferences and manage your account settings.",
-      href: "/dashboard/1234/settings",
+      href: "settings",
       icon: (
         <Settings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),

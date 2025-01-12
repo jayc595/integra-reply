@@ -12,7 +12,7 @@ import ClerkUserProfile from "./clerk-profile";
 import { MENU } from "@/constants/menu";
 
 export function SidebarLayout() {
-  const { pathname } = usePagePath();
+  const { pathname, page, userSlug } = usePagePath();
 
   const urlPath = pathname
   .split("/")
@@ -28,7 +28,7 @@ export function SidebarLayout() {
             {open ? <Logo /> : <LogoIcon />}
             <div className="mt-8 flex flex-col gap-2 ">
               {MENU.map((link, idx) => (
-                <SidebarLink key={idx} link={link} isActive={link.label.toLowerCase() === urlPath} />
+                <SidebarLink key={idx} userSlug={userSlug} link={link} isActive={link.label.toLowerCase() === urlPath} />
               ))}
               <div className="pt-5">
                 <Separator orientation="horizontal" className='bg-[#3e3e3f]'/>

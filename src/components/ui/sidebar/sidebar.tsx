@@ -5,6 +5,7 @@ import React, { useState, createContext, useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { IconMenu2, IconX } from "@tabler/icons-react";
 import { div } from "framer-motion/client";
+import { userInitialization } from "@/actions/user";
 
 interface Links {
   label: string;
@@ -157,21 +158,32 @@ export const MobileSidebar = ({
 };
 
 export const SidebarLink = ({
+  userSlug,
   link,
   className,
   isActive,
   ...props
 }: {
+  userSlug?: string | null;
   link: Links;
   className?: string;
   props?: LinkProps;
   isActive?: boolean;
 }) => {
   const { open, animate } = useSidebar();
+
+  const url = (() => {
+    if(link.href === 'dashboard') {
+      return `/dashboard/${userSlug}`;
+    } else {
+      return `/dashboard/${userSlug}/${link.href}`;
+    }
+  })();
+
   return (
     <div className={cn(isActive ? "bg-black rounded-md" : "")}>
       <Link
-        href={link.href}
+        href={url}
         className={cn(
           "flex items-center justify-start gap-2 group/sidebar py-2",
           className
