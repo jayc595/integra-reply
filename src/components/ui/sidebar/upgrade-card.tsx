@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 import { Button } from '../button';
+import { useQueryUser } from '@/hooks/use-user-queries';
 
 type Props = {
   open: boolean;
@@ -9,7 +10,12 @@ type Props = {
 const UpgradeCard = ({ open }: Props) => {
   if (!open) return null;
 
-  //@TODO: Only show the Card IF User isn't a member.
+  const data = useQueryUser()
+
+  const plan = data.data?.data?.subscription?.plan;
+  if(plan !== "FREE") return null;
+
+  //@TODO: Consider different data depending on plan. I.e if on Trial display days left on trial.
 
   return (
     <motion.div
