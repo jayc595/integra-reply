@@ -169,11 +169,11 @@ export const SidebarLink = ({
 }) => {
   const { open, animate } = useSidebar();
   return (
-    <div className={cn(isActive ? "bg-black rounded-md pl-1 pr-1" : "")}>
+    <div className={cn(isActive ? "bg-black rounded-md" : "")}>
       <Link
         href={link.href}
         className={cn(
-          "flex items-center justify-start gap-2  group/sidebar py-2",
+          "flex items-center justify-start gap-2 group/sidebar py-2",
           className
         )}
         {...props}
