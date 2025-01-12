@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from 'sonner';
+import ReactQueryProvider from '@/lib/react-query-provider';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,7 +31,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <ReactQueryProvider>
+              {children}
+            </ReactQueryProvider>
             <Toaster/>
           </ThemeProvider>
         </body>
