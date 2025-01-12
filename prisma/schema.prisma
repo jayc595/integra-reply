@@ -29,6 +29,7 @@ model User{
   updatedAt DateTime @updatedAt
   subscription Subscription?
   integrations Integrations[]
+  automations Automations[]
 }
 
 model Subscription{
@@ -50,4 +51,13 @@ model Integrations{
   token       String       @unique
   expiresAt   DateTime?
   profileId String?
+}
+
+model Automations{
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  User      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name      String    @default("Untitled Automation")
+  createdAt DateTime  @default(now())
+  active    Boolean   @default(false)
+  userId    String?   @db.Uuid
 }
