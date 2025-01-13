@@ -1,6 +1,5 @@
 "use client"
 
-import Link from 'next/link'
 import React from 'react'
 import { Button } from './button'
 import { Zap } from 'lucide-react'
@@ -9,7 +8,7 @@ import { useRouter } from "next/navigation";
 
 type Props = {}
 
-const NewAutomationCard = async (props: Props) => {
+const NewAutomationCard = (props: Props) => {
   const router = useRouter();
   const { isPending, mutate } = useCreateAutomation(undefined, (data) => {
     // Redirect to the automation detail page

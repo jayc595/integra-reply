@@ -8,9 +8,9 @@ import React, { useEffect } from 'react'
 type Props = {}
 
 const Automations = (props: Props) => {
-  // const { data } = useQueryAutomations();
+  const { data } = useQueryAutomations();
 
-  // console.log(data)
+  console.log(data)
   return (
       <div className="p-4 bg-neutral-200 dark:bg-neutral-900 min-h-screen">
         <div className="flex flex-wrap gap-4">
