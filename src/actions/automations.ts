@@ -6,7 +6,7 @@ import { onCurrentUser } from "./user"
 export const createAutomations = async (id?: string) => {
     const user = await onCurrentUser()
     try {
-      const automation = await createAutomation(user.id, id)
+      const automation = await create(user.id, id)
       if (automation){
         return { status: 200, data: 'Automation created successfully', res: automation }
       } 
@@ -17,10 +17,17 @@ export const createAutomations = async (id?: string) => {
     }
   }
 
-  export const createAutomation = async (clerkId: string, id?: string) => {
-    return await client.automations.create({
+  export const create = async (clerkId: string, id?: string) => {
+    return await client.user.update({
+      where: {
+        clerkId,
+      },
       data: {
-        ...(id && { id })
+        automations: {
+          create: {
+            ...(id && { id }),
+          },
+        },
       },
     })
   }
