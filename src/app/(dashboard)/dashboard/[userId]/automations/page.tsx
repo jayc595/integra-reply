@@ -11,10 +11,25 @@ const Automations = (props: Props) => {
   const { data } = useQueryAutomations();
 
   console.log(data)
+
+  //@TODO: Render different content if no automations exist yet.
+  if(data?.status !== 200){
+    return <></>
+  }
+
   return (
       <div className="p-4 bg-neutral-200 dark:bg-neutral-900 min-h-screen">
         <div className="flex flex-wrap gap-4">
           <NewAutomationCard/>
+          {data.res!.map((automation) => (
+          <AutomationCard
+            key={automation.id}
+            title={automation.name}
+            keywords={["email", "notification", "customer"]}
+            isActive={automation.active}
+            createdAt={new Date(automation.createdAt)}
+          />
+        ))}
           <AutomationCard
             title="Email Notification Workflow"
             keywords={["email", "notification", "customer"]}

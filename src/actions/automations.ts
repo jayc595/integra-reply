@@ -59,8 +59,8 @@ export const createAutomations = async (id?: string) => {
         };
       }
   
-      return { status: 404, data: "No automations found" };
+      return { status: 404, data: "No automations found", res: [] };
     } catch (error) {
-      return { status: 500, data: `Internal server error: ${error}` };
+      return { status: 500, data: `Internal server error: ${error}`, res: [] };
     }
   };
