@@ -2,11 +2,15 @@
 
 import AutomationCard from '@/components/ui/automation-card'
 import NewAutomationCard from '@/components/ui/new-automation-card'
-import React from 'react'
+import { useQueryAutomations } from '@/hooks/use-user-queries'
+import React, { useEffect } from 'react'
 
 type Props = {}
 
 const Automations = (props: Props) => {
+  // const { data } = useQueryAutomations();
+
+  // console.log(data)
   return (
       <div className="p-4 bg-neutral-200 dark:bg-neutral-900 min-h-screen">
         <div className="flex flex-wrap gap-4">

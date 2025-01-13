@@ -1,3 +1,4 @@
+import { getUserAutomations } from "@/actions/automations"
 import { onGetUserInfo } from "@/actions/user"
 import { QueryClient, QueryFunction } from "@tanstack/react-query"
 
@@ -15,4 +16,8 @@ const prefetch = async (
 
 export const PrefetchUser = async (client: QueryClient) => {
     return await prefetch(client, onGetUserInfo, "user-profile")
+}
+
+export const PrefetchAutomations = async (client: QueryClient) => {
+    return await prefetch(client, getUserAutomations, "user-automations")
 }

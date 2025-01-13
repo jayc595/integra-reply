@@ -1,3 +1,4 @@
+import { getUserAutomations } from "@/actions/automations"
 import { onGetUserInfo } from "@/actions/user"
 import { useQuery } from "@tanstack/react-query"
 
@@ -7,3 +8,10 @@ export const useQueryUser = () => {
       queryFn: onGetUserInfo,
     })
   }
+
+  export const useQueryAutomations = () => {
+    return useQuery({
+      queryKey: ['user-automations'],
+      queryFn: getUserAutomations,
+    })
+  }  

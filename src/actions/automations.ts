@@ -31,3 +31,36 @@ export const createAutomations = async (id?: string) => {
       },
     })
   }
+
+  export const getAutomation = async (clerkId: string) => {
+    return await client.user.findUnique({
+      where: {
+        clerkId,
+      },
+      select: {
+        automations: {
+          orderBy: { createdAt: 'desc' },
+        },
+      },
+    });
+  }
+
+  export const getUserAutomations = async () => {
+    const user = await onCurrentUser()
+    const clerkId = user.id;
+    try {
+      const automations = await getAutomation(clerkId)
+  
+      if (automations && automations.automations.length > 0) {
+        return {
+          status: 200,
+          data: "Automations fetched successfully",
+          res: automations.automations
+        };
+      }
+  
+      return { status: 404, data: "No automations found" };
+    } catch (error) {
+      return { status: 500, data: `Internal server error: ${error}` };
+    }
+  };

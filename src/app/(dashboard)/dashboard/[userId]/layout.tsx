@@ -1,7 +1,7 @@
 import { SidebarLayout } from "@/components/ui/sidebar";
 import React from "react";
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
-import { PrefetchUser } from "@/lib/prefetch";
+import { PrefetchAutomations, PrefetchUser } from "@/lib/prefetch";
 import TopNavigationBar from "@/components/ui/sidebar/top-navigation-bar";
 
 type Props = {
@@ -13,6 +13,8 @@ const Layout = async ({ children, params }: Props) => {
   const query = new QueryClient();
 
   await PrefetchUser(query)
+
+  await PrefetchAutomations(query)
 
 
   return (
