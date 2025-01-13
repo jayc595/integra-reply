@@ -18,8 +18,7 @@ const TopNavigationBar = (props: Props) => {
     const description = currentMenuItem?.description;
 
     //   @TODO: Improve the below.
-    const ignoreTopNav = /\/automations\/\d+$/.test(pathname);
-
+    const ignoreTopNav = /\/automations\/.+$/.test(pathname);
 
     if(ignoreTopNav) return <></>
 
