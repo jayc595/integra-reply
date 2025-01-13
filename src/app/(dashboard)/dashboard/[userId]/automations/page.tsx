@@ -22,14 +22,14 @@ const Automations = (props: Props) => {
         <div className="flex flex-wrap gap-4">
           <NewAutomationCard/>
           {data.res!.map((automation) => (
-          <AutomationCard
-            id={automation.id}
-            key={automation.id}
-            title={automation.name}
-            keywords={["email", "notification", "customer"]}
-            isActive={automation.active}
-            createdAt={automation.createdAt}
-          />
+            <AutomationCard
+              id={automation.id}
+              key={automation.id}
+              title={automation.name}
+              keywords={["email", "notification", "customer"]}
+              isActive={automation.active}
+              createdAt={automation.createdAt}
+            />
         ))}
         </div>
       </div>
