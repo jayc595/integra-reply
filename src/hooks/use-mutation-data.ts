@@ -5,7 +5,7 @@ export const useMutationData = (
     mutationKey: MutationKey,
     mutationFn: MutationFunction<any, any>,
     queryKey?: string,
-    onSuccess?: () => void
+    onSuccess?: (data: any) => void
 ) => {
     const client = useQueryClient()
     const { mutate, isPending } = useMutation({
@@ -13,7 +13,7 @@ export const useMutationData = (
         mutationFn,
         onSuccess: (data) => {
             if(onSuccess){
-                onSuccess()
+                onSuccess(data)
             }
             return toast(data?.status === 200 ? "Success" : "Error", {
                 description: data.data
