@@ -26,9 +26,9 @@ const AutomationEditor = ({
    const automationName = data?.res?.name ? data?.res.name : 'Untitled Automation'
 
   return (
-    <div className="p-4 bg-neutral-200 dark:bg-neutral-900 min-h-screen w-full flex flex-col flex-1 max-w-screen-2xl">
+    <div className="p-4 bg-neutral-200 dark:bg-neutral-900 min-h-screen">
       <AutomationEditorTopNav name={automationName} />
-      <div className="flex flex-col justify-center items-center mt-10 w-screen relative">
+      <div className="flex flex-col justify-center items-center mt-10 relative">
         {/* Trigger Box */}
         <div className="bg-neutral-100 dark:bg-neutral-800 rounded-md border border-neutral-200 dark:border-neutral-700 p-6 min-w-[450px] max-w-[800px] relative z-10">
           <div className="flex items-start gap-4">

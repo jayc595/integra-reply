@@ -25,7 +25,7 @@ const Layout = async ({ children, params }: Props) => {
       >
         <SidebarLayout />
         <div className="flex flex-1">
-          <div className="p-2 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col flex-1 w-full">
+          <div className="p-2 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col flex-1">
             <TopNavigationBar />
             {children}
           </div>
