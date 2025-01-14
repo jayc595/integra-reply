@@ -35,11 +35,17 @@ const AutomationCard: React.FC<AutomationCardProps> = ({
             <h3 className='text-lg font-semibold text-neutral-800 dark:text-neutral-100 break-words'>{title}</h3>
             </div>
             <div className='flex flex-wrap gap-2 mb-4'>
-            {keywords.map((keyword, index) => (
-                <Badge key={index} variant="secondary" className="bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-200">
-                {keyword}
-                </Badge>
-            ))}
+            {keywords.length > 0 ? (
+                keywords.map((keyword, index) => (
+                  <Badge key={index} variant="secondary" className="bg-neutral-200 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-200">
+                    {keyword}
+                  </Badge>
+                ))
+              ) : (
+                <Badge className="bg-transparent border-2 border-dashed border-neutral-700 text-neutral-500">
+                    No keywords
+                  </Badge>
+              )}
             </div>
             <div className='text-xs text-neutral-500 dark:text-neutral-400'>
               Created {createdAtLabel}
