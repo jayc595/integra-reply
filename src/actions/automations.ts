@@ -64,3 +64,22 @@ export const createAutomations = async (id?: string) => {
       return { status: 500, data: `Internal server error: ${error}`, res: [] };
     }
   };
+
+  export const getAutomationData = async (id: string) => {
+    const user = await onCurrentUser()
+    try{
+      const automation = await client.automations.findUnique({
+        where: {
+          id
+        }
+      })
+
+      if(automation){
+        return { status: 200, res: automation }
+      }
+
+      return { status: 404, data: "No automations found" };
+    } catch(error){
+      return { status: 500, data: `Internal server error: ${error}` };
+    }
+  }

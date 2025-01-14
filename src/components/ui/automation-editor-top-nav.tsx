@@ -8,14 +8,20 @@ import { Undo, Redo, Save, Eye } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
 type Props = {
+  name: string
   onSave?: (title: string) => void
   onPreview?: () => void
   onActivate?: (isActive: boolean) => void
 }
 
-const AutomationEditorTopNav: React.FC<Props> = ({ onSave, onPreview, onActivate }) => {
+const AutomationEditorTopNav: React.FC<Props> = ({ 
+  name, 
+  onSave, 
+  onPreview, 
+  onActivate 
+}) => {
   const [isEditing, setIsEditing] = useState(false)
-  const [title, setTitle] = useState('Untitled Automation')
+  const [title, setTitle] = useState(name)
   const [isActive, setIsActive] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
