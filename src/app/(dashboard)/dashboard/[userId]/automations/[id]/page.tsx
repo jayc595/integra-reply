@@ -1,5 +1,6 @@
 "use client"
 
+import { updateAutomationName } from '@/actions/automations'
 import AutomationEditorTopNav from '@/components/ui/automation-editor-top-nav'
 import { useQueryAutomation } from '@/hooks/use-user-queries'
 import { Activity, Ear, Send } from 'lucide-react'
@@ -19,7 +20,7 @@ const AutomationEditor = ({
   const unwrappedParams = use(params)
   const { data } = useQueryAutomation(unwrappedParams.id)
 
-   if(data?.status !== 200){
+   if(data?.status !== 200 || !data?.res?.id){
     return <></>
    }
 
@@ -27,7 +28,7 @@ const AutomationEditor = ({
 
   return (
     <div className="p-4 bg-neutral-200 dark:bg-neutral-900 min-h-screen">
-      <AutomationEditorTopNav name={automationName} />
+      <AutomationEditorTopNav id={data?.res?.id} name={automationName} />
       <div className="flex flex-col justify-center items-center mt-10 relative">
         {/* Trigger Box */}
         <div className="bg-neutral-100 dark:bg-neutral-800 rounded-md border border-neutral-200 dark:border-neutral-700 p-6 min-w-[450px] max-w-[800px] relative z-10">

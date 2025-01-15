@@ -83,3 +83,22 @@ export const createAutomations = async (id?: string) => {
       return { status: 500, data: `Internal server error: ${error}` };
     }
   }
+
+  export const updateAutomationName = async (id: string, name: string) => {
+    try{
+      const automation = await client.automations.update({
+        where: {id},
+        data: {
+          name: name
+        }
+      })
+
+      if(automation){
+        return { status: 200, data: "Successfully updated Automation Name" }
+      }
+
+      return { status: 404, data: "Unable to find Automation"}
+    } catch(error){
+      return { status: 500, data: "Internal server error"}
+    }
+  }

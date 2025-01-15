@@ -6,8 +6,10 @@ import { Input } from "@/components/ui/input"
 import { Switch } from "@/components/ui/switch"
 import { Undo, Redo, Save, Eye } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { updateAutomationName } from '@/actions/automations'
 
 type Props = {
+  id: string
   name: string
   onSave?: (title: string) => void
   onPreview?: () => void
@@ -15,6 +17,7 @@ type Props = {
 }
 
 const AutomationEditorTopNav: React.FC<Props> = ({ 
+  id,
   name,
   onSave, 
   onPreview, 
@@ -36,6 +39,11 @@ const AutomationEditorTopNav: React.FC<Props> = ({
   }
 
   const handleTitleBlur = () => {
+    if(name !== title){
+      console.log("editing finished + title is different");
+      const result = updateAutomationName(id,title);
+      name === title
+    }
     setIsEditing(false)
     if (onSave) onSave(title)
   }
@@ -50,6 +58,8 @@ const AutomationEditorTopNav: React.FC<Props> = ({
     setIsActive(checked)
     if (onActivate) onActivate(checked)
   }
+
+  // updateAutomationName()
 
   return (
     <div className="flex items-center justify-between bg-neutral-100 dark:bg-neutral-800 rounded-md border border-neutral-200 dark:border-neutral-700 overflow-hidden p-4">
@@ -109,4 +119,4 @@ const AutomationEditorTopNav: React.FC<Props> = ({
   )
 }
 
-export default AutomationEditorTopNav
+export default AutomationEditorTopNav  
