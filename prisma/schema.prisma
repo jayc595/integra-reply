@@ -19,6 +19,13 @@ enum SUBSCRIPTION_PLAN {
   FREE
 }
 
+enum INTEGRATION_TYPE {
+  INSTAGRAM
+  FACEBOOK
+  WHATSAPP
+  EMAIL
+}
+
 model User{
   id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   clerkId String @unique
@@ -51,6 +58,7 @@ model Integrations{
   token       String       @unique
   expiresAt   DateTime?
   profileId String?
+  type INTEGRATION_TYPE
 }
 
 model Automations{
