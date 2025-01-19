@@ -26,6 +26,28 @@ enum INTEGRATION_TYPE {
   EMAIL
 }
 
+enum LISTENER_TYPE {
+  KEYWORD_CONTAINS
+  PHRASE
+  REGEX
+}
+
+enum TRIGGER_TYPE {
+  WEBHOOK
+  ON_SCHEDULE
+}
+
+enum ACTION_TYPE {
+  DM_USER
+  REPLY
+  EMAIL
+}
+
+enum INTERACTION_TYPE {
+  REPLY
+  USER_DM
+}
+
 model User{
   id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   clerkId String @unique
@@ -68,4 +90,57 @@ model Automations{
   createdAt DateTime  @default(now())
   active    Boolean   @default(false)
   userId    String?   @db.Uuid
+  listener  Listener?
+  trigger Trigger?
+  action Action?
+
+}
+
+model Trigger{
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  Automation Automations @relation(fields: [automationId], references: [id], onDelete:Cascade)
+  automationId String @unique @db.Uuid
+  type TRIGGER_TYPE
+  integration INTEGRATION_TYPE
+
+}
+
+model Action{
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  Automation Automations @relation(fields: [automationId], references: [id], onDelete:Cascade)
+  automationId String @unique @db.Uuid
+  interaction INTERACTION_TYPE
+  action_type ACTION_TYPE
+  value String
+}
+
+model Listener{
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  Automation Automations @relation(fields: [automationId], references: [id], onDelete:Cascade)
+  automationId String @unique @db.Uuid
+  type LISTENER_TYPE
+  keywords Keywords?
+  phrase Phrase?
+  regex Regex?
+}
+
+model Keywords{
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  Listener Listener @relation(fields: [listenerId], references: [id], onDelete:Cascade)
+  listenerId String @unique @db.Uuid
+  value String
+}
+
+model Regex{
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  Listener Listener @relation(fields: [listenerId], references: [id], onDelete:Cascade)
+  listenerId String @unique @db.Uuid
+  value String
+}
+
+model Phrase{
+  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  Listener Listener @relation(fields: [listenerId], references: [id], onDelete:Cascade)
+  listenerId String @unique @db.Uuid
+  value String
 }
