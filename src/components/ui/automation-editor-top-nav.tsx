@@ -44,11 +44,15 @@ const AutomationEditorTopNav: React.FC<Props> = ({
     setTitle(e.target.value)
   }
 
-  const handleTitleBlur = () => {
+  const handleTitleBlur = async () => {
     if(name !== title){
-      console.log("editing finished + title is different");
-      const result = updateAutomationName(id,title);
+      const result = await updateAutomationName(id,title);
       name === title
+      if(result.status == 200){
+        toast.success("Automation name successfully updated");
+      } else {
+        toast.error(result.data);
+      }
     }
     setIsEditing(false)
     if (onSave) onSave(title)
@@ -77,8 +81,6 @@ const AutomationEditorTopNav: React.FC<Props> = ({
       toast.error(result.data);
     }
   }
-
-  // updateAutomationName()
 
   return (
     <div className="flex items-center justify-between bg-neutral-100 dark:bg-neutral-800 rounded-md border border-neutral-200 dark:border-neutral-700 overflow-hidden p-4">
