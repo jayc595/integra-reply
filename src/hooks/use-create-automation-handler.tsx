@@ -2,19 +2,14 @@
 
 import { useCreateAutomation } from "@/hooks/use-automations";
 import { useRouter } from "next/navigation";
-import { useQueryUser } from "./use-user-queries";
 
 export const useCreateAutomationHandler = () => {
   const router = useRouter();
 
-  const data = useQueryUser();
-  
-  const userId = data.data?.data?.id;
-
-  const { isPending, mutate } = useCreateAutomation(undefined, (data) => {
+  const { isPending, mutate } = useCreateAutomation(undefined, (result) => {
     // Redirect to the automation detail page
-    if (data?.res?.id) {  
-      const url = `/dashboard/${userId}/automations/${data.res.id}`;
+    if (result?.res?.id) {  
+      const url = `/dashboard/${result.res.User.clerkId}/automations/${result.res.id}`;
       router.push(url);
     } else {
       console.error("No automation ID found in response");

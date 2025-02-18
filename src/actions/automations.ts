@@ -18,7 +18,7 @@ export const createAutomations = async (id?: string) => {
   }
 
   export const create = async (clerkId: string, id?: string) => {
-    return await client.user.update({
+    const automation = await client.user.update({
       where: {
         clerkId,
       },
@@ -29,7 +29,23 @@ export const createAutomations = async (id?: string) => {
           },
         },
       },
+      select: {
+        automations: {
+          orderBy: { createdAt: "desc" },
+          take: 1,
+          select: {
+            id: true,
+            User: {
+              select: {
+                clerkId: true
+              }
+            }
+          },
+        },
+      },
     })
+
+    return automation.automations[0];
   }
 
   export const getAutomation = async (clerkId: string) => {
