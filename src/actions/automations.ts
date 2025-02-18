@@ -102,3 +102,19 @@ export const createAutomations = async (id?: string) => {
       return { status: 500, data: "Internal server error"}
     }
   }
+
+  export const deleteAutomationById = async (id: string) => {
+    try{
+      const automation = await client.automations.delete({
+        where: {id}
+      })
+
+      if(automation){
+        return { status: 200, data: "Successfully deleted automation" }
+      }
+
+      return { status: 404, data: "Unable to find Automation"}
+    } catch(error){
+      return { status: 500, data: "Internal server error"}
+    }
+  }

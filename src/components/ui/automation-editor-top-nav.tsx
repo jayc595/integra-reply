@@ -4,9 +4,12 @@ import React, { useState, useRef, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Switch } from "@/components/ui/switch"
-import { Undo, Redo, Save, Eye } from 'lucide-react'
+import { Undo, Redo, Save, Eye, Trash2 } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { updateAutomationName } from '@/actions/automations'
+import { deleteAutomationById, updateAutomationName } from '@/actions/automations'
+import { toast } from 'sonner'
+import { useQueryUser } from '@/hooks/use-user-queries'
+import { useRouter,usePathname } from 'next/navigation'
 
 type Props = {
   id: string
@@ -27,6 +30,9 @@ const AutomationEditorTopNav: React.FC<Props> = ({
   const [title, setTitle] = useState(name)
   const [isActive, setIsActive] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     if (isEditing && inputRef.current) {
@@ -57,6 +63,19 @@ const AutomationEditorTopNav: React.FC<Props> = ({
   const handleActivateToggle = (checked: boolean) => {
     setIsActive(checked)
     if (onActivate) onActivate(checked)
+  }
+
+  const handleDeleteAutomation = async () => {
+    const result = await deleteAutomationById(id);
+
+    if(result.status == 200){
+      toast.success('Automation successfully removed');
+      //Handle redirect to automations page.
+      const parentUrl = pathname.split('/').slice(0, -1).join('/');
+      router.push(parentUrl);
+    } else {
+      toast.error(result.data);
+    }
   }
 
   // updateAutomationName()
@@ -106,6 +125,9 @@ const AutomationEditorTopNav: React.FC<Props> = ({
         <Button variant="outline" size="sm" onClick={onPreview}>
           <Eye className="h-4 w-4 mr-2" />
           Preview
+        </Button>
+        <Button onClick={() => handleDeleteAutomation()} variant="outline" size="icon">
+          <Trash2 className="h-4 w-4" />
         </Button>
         <div className="flex items-center space-x-2">
           <Switch
